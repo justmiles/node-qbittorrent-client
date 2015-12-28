@@ -127,7 +127,7 @@ class qBittorrent
 
   addTorrentFromURL: (url, callback) ->
     log.debug 'Executing addTorrentFromURL'
-    @_makeRequest 'POST', "/command/download", null, callback
+    @_makeRequest 'POST', "/command/download", urls: url, callback
 
   uploadFromDisk: (callback) ->
     log.debug 'Executing uploadFromDisk'
