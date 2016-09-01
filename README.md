@@ -18,14 +18,14 @@ npm install --save qbittorrent-client
 Examples below.
 ###getTorrents
 ```coffee-script
-qBittorrent = require 'qbtorrent-client'
+qBittorrent  = require('qbittorrent-client').API3
 
 client = new qBittorrent
   username: 'admin'
   password: 'adminadmin'
   host: 'localhost'
   port: 8080
-
+    
 client.getTorrents (err, torrents) ->
   console.log err if err
   console.log torrents if torrents
