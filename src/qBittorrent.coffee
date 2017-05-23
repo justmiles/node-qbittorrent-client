@@ -46,8 +46,8 @@ class qBittorrent
             'content-type': 'application/json'
             cookie: client.cookie or null
 
-        options.headers['content-type'] = 'application/x-www-form-urlencoded' if method == 'POST'
-        options.form = form if form
+        options.headers['content-type'] = 'multipart/form-data' if method == 'POST'
+        options.formData = form if form
 
         if client.apiVersion == 'API1'
 
@@ -136,11 +136,7 @@ class API1 extends qBittorrent
   getPreferences: (callback) ->
     log.debug 'Executing getPreferences'
     @_makeRequest 'GET', "/json/preferences", callback
-
-  addTorrentFromURL: (url, callback) ->
-    log.debug 'Executing addTorrentFromURL'
-    @_makeRequest 'POST', "/command/download", urls: url, callback
-
+    
   uploadFromDisk: (callback) ->
     log.debug 'Executing uploadFromDisk'
     #TODO: uploadFromDisk support
@@ -294,9 +290,9 @@ class API2 extends API1
     log.debug 'Executing getPreferences'
     @_makeRequest 'GET', "/query/preferences", callback
 
-  addTorrentFromURL: (url, callback) ->
+  addTorrentFromURL: (options, callback) ->
     log.debug 'Executing addTorrentFromURL'
-    @_makeRequest 'POST', "/command/download", urls: url, callback
+    @_makeRequest 'POST', "/command/download", options, callback
 
   uploadFromDisk: (callback) ->
     log.debug 'Executing uploadFromDisk'
